@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using VLO.Models;
@@ -54,29 +55,122 @@ namespace VLO.Controllers
             return View();
         }
 
-        public ActionResult Solicitar()
+        public ActionResult Solicitar(int? id)
         {
-            return View();
+            ViewBag.mesa = id;
+            SolicitudViewModel svm = new SolicitudViewModel();
+            //svm.Prestamos = queryOrd;
+            svm.Productos = db.Productos.ToList();
+            svm.Categorias = db.Categoria.ToList();
+            return View(svm);
         }
 
-        //[HttpPost]
-        //public ActionResult DevolverProd(int idprod)
-        //{
-        //    Productos d = db.Productos.Find(idprod);
-        //    var Aumento = (from a in db.Prestamos where a.IdProducto == idprod select a).FirstOrDefault();
-        //    d.Cantidad = d.Cantidad + Aumento.Cantidad;
 
-        //    db.Entry(d).State = EntityState.Modified;
-        //    db.SaveChanges();
-        //    return Redirect("Create");
-        //}
+        [HttpPost]
+        public async Task<ActionResult> AddPrest(AddPrestViewModel apvm)
+        {
+            //Usuarios e = db.Usuarios.Where(x => x.IdUser == 1).FirstOrDefault();
+            var e = Convert.ToInt32(Session["Id"]);
+            for (var i = 0; i < apvm.id.Count; i++)
+            {
+                Prestamos p = new Prestamos();
+                p.Cantidad = apvm.cantidad[i];
+                p.IdUser = e;
+                p.Estado = 1;
+                p.IdProducto = apvm.id[i];
+                db.Prestamos.Add(p);
+                await db.SaveChangesAsync();
 
-        // POST: Prestamos/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+                
+            }  
+                
+
+            return Redirect("Espera");
+        }
+
+        //Vista de las solicitudes para el admin
+        public ActionResult Solicitudes()
+        {
+            var soli = db.Prestamos.Where(x => x.Estado == 1).ToList();
+            SolicitudViewModel cvm = new SolicitudViewModel();
+            cvm.Prestamos = soli;
+            cvm.Productos = db.Productos.ToList();
+            return View(cvm);
+        }
+
+        [HttpGet]
+        public ActionResult TerminarSolicitud(int idprestamos)
+        {
+            Prestamos d = db.Prestamos.Find(idprestamos);
+            d.Estado = 2;
+            db.Entry(d).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return Redirect("/Prestamos/Solicitudes");
+        }
+
+        public ActionResult Espera()
+        {
+            var soli = db.Prestamos.Where(x => x.Estado == 2).ToList();
+            SolicitudViewModel cvm = new SolicitudViewModel();
+            cvm.Prestamos = soli;
+            cvm.Productos = db.Productos.ToList();
+            return View(cvm);
+
+        }
+
+        [HttpGet]
+        public ActionResult Retirar(int idprestamos)
+        {
+            Prestamos d = db.Prestamos.Find(idprestamos);
+            d.Estado = 3;
+            db.Entry(d).State = EntityState.Modified;
+            db.SaveChanges();
+
+            //Encontrar el producto
+            var prod = db.Productos.Find(d.IdProducto);
+            var Disminuye = d.Cantidad;
+            double cantidad = prod.Cantidad;
+            prod.Cantidad = cantidad - Disminuye;
+            db.Entry(prod).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return Redirect("/Prestamos/Espera");
+        }
+        //Vista de devolucion Empleado
+        public ActionResult Devolucion()
+        {
+            var soli = db.Prestamos.Where(x => x.Estado == 3).ToList();
+            SolicitudViewModel cvm = new SolicitudViewModel();
+            cvm.Prestamos = soli;
+            cvm.Productos = db.Productos.ToList();
+            return View(cvm);
+
+        }
+        //Vista Entregas Admin 
+        [HttpGet]
+        public ActionResult Devolver(int? idprestamos, int cant)
+        {
+            Prestamos d = db.Prestamos.Find(idprestamos);
+            d.Estado = 4;
+            db.Entry(d).State = EntityState.Modified;
+            db.SaveChanges();
+
+            //Encontrar el producto
+            var prod = db.Productos.Find(d.IdProducto);
+            //var Disminuye = d.Cantidad;
+            double cantidad = prod.Cantidad;
+            prod.Cantidad = cant + cant;
+            db.Entry(prod).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return Redirect("/Prestamos/Devolucion");
+        }
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdPrestamo,IdProducto,IdUser, Cantidad")] Prestamos prestamos)
+        public ActionResult Create([Bind(Include = "IdPrestamo,IdProducto,IdUser, Cantidad, Estado")] Prestamos prestamos)
         {
             if (ModelState.IsValid)
             {
@@ -125,7 +219,7 @@ namespace VLO.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdPrestamo,IdProducto,IdUser, Cantidad")] Prestamos prestamos)
+        public ActionResult Edit([Bind(Include = "IdPrestamo,IdProducto,IdUser, Cantidad, Estado")] Prestamos prestamos)
         {
             if (ModelState.IsValid)
             {

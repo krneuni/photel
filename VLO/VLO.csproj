@@ -255,16 +255,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201904011944378_InitialCreate.cs" />
-    <Compile Include="Migrations\201904011944378_InitialCreate.Designer.cs">
-      <DependentUpon>201904011944378_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904011947475_Primera.cs" />
-    <Compile Include="Migrations\201904011947475_Primera.Designer.cs">
-      <DependentUpon>201904011947475_Primera.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AddOrdenViewModel.cs" />
+    <Compile Include="Models\AddPrestViewModel.cs" />
     <Compile Include="Models\AsignacionTurno.cs" />
     <Compile Include="Models\Categoria.cs" />
     <Compile Include="Models\CocinaViewModel.cs" />
@@ -281,6 +273,7 @@
     <Compile Include="Models\Proveedores.cs" />
     <Compile Include="Models\Receta.cs" />
     <Compile Include="Models\Roles.cs" />
+    <Compile Include="Models\SolicitudViewModel.cs" />
     <Compile Include="Models\TipoMenu.cs" />
     <Compile Include="Models\Turnos.cs" />
     <Compile Include="Models\Usuarios.cs" />
@@ -372,6 +365,9 @@
     <Content Include="Views\Ordenes\OrdenesTerminadas.cshtml" />
     <Content Include="Views\Ordenes\Pagos.cshtml" />
     <Content Include="Views\Prestamos\Solicitar.cshtml" />
+    <Content Include="Views\Prestamos\Espera.cshtml" />
+    <Content Include="Views\Prestamos\Solicitudes.cshtml" />
+    <Content Include="Views\Prestamos\Devolucion.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -381,14 +377,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201904011944378_InitialCreate.resx">
-      <DependentUpon>201904011944378_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904011947475_Primera.resx">
-      <DependentUpon>201904011947475_Primera.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

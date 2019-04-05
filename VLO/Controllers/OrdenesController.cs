@@ -101,12 +101,12 @@ namespace VLO.Controllers
         [HttpPost]
         public async Task<ActionResult> AddOrden(AddOrdenViewModel aovm)
         {
-            Usuarios e = db.Usuarios.Where(x => x.IdUser == 1).FirstOrDefault();
-
+            //Usuarios e = db.Usuarios.Where(x => x.IdUser == 1).FirstOrDefault();
+            int user = Convert.ToInt32(Session["Id"]);
             Pedido p = new Pedido();
             p.Cantidad = aovm.numpersonas;
             p.Cliente = aovm.cliente;
-            p.Usuarios = e;
+            p.IdUser = user;
             p.Estado = 1;
             p.IdMesa = aovm.mesa;
             

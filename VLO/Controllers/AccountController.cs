@@ -15,7 +15,7 @@ namespace VLO.Controllers
         {
             if (Session["Id"] != null)
             {
-                return View("Index", "Ordenes");
+                return View("Index", "Home");
 
             }
             else
@@ -41,6 +41,7 @@ namespace VLO.Controllers
             {
                 Session["Id"] = Consulta.IdUser;
                 Session["nombre"] = Consulta.Nombre;
+                ViewBag.Nombre = Consulta.Nombre;
                 Session["usuario"] = Consulta.Username;
                 Session["roles"] = Consulta.IdRol;
                 int rol = Convert.ToInt32(Session["roles"]);
@@ -70,11 +71,11 @@ namespace VLO.Controllers
 
 
         }
+        
 
-        [HttpPost]
         public ActionResult LogOut()
         {
-
+            Session.Clear();
             Session.Abandon();
             return RedirectToAction("Login", "Account");
         }

@@ -83,7 +83,12 @@
         <div class="pull-right p-r-15">
             <ul>
                 <li class="header-icon dib">
-                    @ViewBag.User
+                    @Session["nombre"]
+                </li>
+                <li class="header-icon dib">
+                    @Html.ActionLink(" ", "LogOut", "Account", new { area = "" }, new { @class = "ti-power-off" })
+                    @*<a href='@Html.Action("LogOut", "Account")' class=""><span>Cerrar</span></a>*@
+                    @*@Html.ActionLink("Cerrar Sesión", "LogOut", "Account", new { area = "" }, new { @class = "glyphicon glyphicon-log-out" })*@
                 </li>
             </ul>
         </div>

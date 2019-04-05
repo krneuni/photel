@@ -19,6 +19,7 @@
                 @Html.DisplayNameFor(model => model.Productos.Nombre)
             </th>
             <th>Cantidad a retirar</th>
+            <th>Estado</th>
             <th></th>
         </tr>
 
@@ -35,7 +36,32 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Cantidad)
                 </td>
-
+                <td>
+                    @if (item.Estado == 1)
+                    {
+                        <span class="badge badge-danger">
+                            En espera de confirmación
+                        </span>
+                    }
+                    else if (item.Estado == 2)
+                    {
+                        <span class="badge badge-success">
+                            Confirmado
+                        </span>
+                    }
+                    else if (item.Estado == 3)
+                    {
+                        <span class="badge badge-warning">
+                            Retirado
+                        </span>
+                    }
+                    else if (item.Estado == 4)
+                    {
+                        <span class="badge badge-dark">
+                            Devuelto
+                        </span>
+                    }
+                            </td>
                 <td>
                     @Html.ActionLink(" ", "Edit", new { id = item.IdPrestamo }, new { @class = "btn btn-warning glyphicon glyphicon-refresh" })
                     @Html.ActionLink(" ", "Delete", new { id = item.IdPrestamo }, new { @class = "btn btn-danger glyphicon glyphicon-trash" })

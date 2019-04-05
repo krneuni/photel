@@ -17,6 +17,7 @@ namespace VLO.Models
         [Range(0, double.MaxValue, ErrorMessage = "Debe ingresar un valor numérico.")]
         public double Cantidad { get; set; }
 
+        public int Estado { get; set; }
         //Relaciones
         public int IdProducto { get; set; }
         public virtual Productos Productos { get; set; }
