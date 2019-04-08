@@ -11,9 +11,11 @@
         {
             <div class="thumbnail col-md-4">
                 <div class="caption">
-                    Solicitud para: @item.Usuarios.Nombre
+                    Solicitud de parte de: @item.Usuarios.Nombre
+                 
                 </div>
                 <div>
+                    <p><strong>Para: </strong></p>
                     @{ var Adet = Model.Prestamos.Where(x => x.IdProducto == item.IdProducto).ToList();}
                     @foreach (var item2 in Adet)
                     {

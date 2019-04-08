@@ -21,6 +21,10 @@ namespace VLO.Controllers
             return View(asignacionTurno.ToList());
         }
 
+        public ActionResult Turno()
+        {
+            return View(db.AsignacionTurno.ToList());
+        }
         // GET: AsignacionTurnos/Details/5
         public ActionResult Details(int? id)
         {

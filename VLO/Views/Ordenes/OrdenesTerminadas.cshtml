@@ -52,7 +52,11 @@
                         </p>
                     </div>
                 }
-                <a class="btn btn-block badge-primary btn-rounded" href="/Ordenes/OrdenesMeseros?idpedido=@item.IdPedido">Pagar</a>
+                @*<a class="btn btn-block badge-primary btn-rounded" href="/Ordenes/OrdenesMeseros?idpedido=@item.IdPedido">Pagar</a>*@
+                <form method="post" action="/Ordenes/OrdenesMeseros">
+                    <input type="hidden" value="@item.IdPedido" name="idpedido"/>
+                    <input type="submit" value="PGr" />
+                </form>
             </div>
         }
     </div>
@@ -60,6 +64,6 @@
 @section scripts{
     <script>setInterval(function () {
             window.location.reload();
-        }, 10000
+        }, 50000
         );</script>
 }

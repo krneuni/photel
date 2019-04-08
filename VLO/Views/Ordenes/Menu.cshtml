@@ -20,11 +20,11 @@
         <form action="/Ordenes/AddOrden" method="post">
             <div class="form-group">
                 <label>Cliente</label>
-                <input type="text" name="cliente" value="" class="form-control" required />
+                <input type="text" name="cliente" value="@ViewBag.cliente" class="form-control" required />
             </div>
             <div class="form-group">
                 <label>Cantidad de Personas</label>
-                <input type="number" class="form-control" min="1" max="10" name="numpersonas" value="1" required />
+                <input type="number" class="form-control" min="1" max="10" name="numpersonas" value="@ViewBag.cantidad" required />
             </div>
             <input type="hidden" name="mesa" value="@ViewBag.mesa" />
 
@@ -41,7 +41,7 @@
                     </tr>
                 </thead>
                 <tbody id="detalle">
-                    @*@foreach (var item in Model.DetallePedido)
+                    @foreach (var item in Model.DetallePedido)
                     {
                         double total = item.cantidad * item.Menu.Precio;
                         <tr>
@@ -88,7 +88,7 @@
                             </td>
                         </tr>
                         Item = Item + 1;
-                    }*@
+                    }
                 </tbody>
             </table>
             <a href="@Url.Action("Index","Ordenes")" class="btn btn-danger btn-rounded">Cancelar</a>

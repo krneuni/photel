@@ -1,0 +1,33 @@
+﻿@model IEnumerable<VLO.Models.AsignacionTurno>
+@{
+    ViewBag.Title = "Turno";
+}
+
+<h2>Turno</h2>
+@foreach (var item in Model)
+{
+    if (item.IdUser == Convert.ToInt32(Session["Id"]))
+    {
+
+        DateTime fecha1 = Convert.ToDateTime(DayOfWeek.Monday);
+
+        DateTime fecha2 = Convert.ToDateTime(DayOfWeek.Sunday);
+
+        DateTime fecha = System.DateTime.Now;
+
+        if ((fecha >= fecha1) && (fecha <= fecha2))
+        {
+            <div class="thumbnail col-md-3">
+                <div class="caption">
+                    Turno de trabajo para:<strong>@item.Usuarios.Nombre</strong>
+                </div>
+                <div>
+                    <p>Dia: @item.Fecha</p>
+                    <p>Hora: @item.Turnos.HoraInicial - @item.Turnos.HoraFinal</p>
+                </div>
+            </div> 
+
+        }
+    }
+}
+

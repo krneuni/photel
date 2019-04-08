@@ -2,6 +2,8 @@
     <li class="label">Menu</li>
 
     <li><a href="@Url.Action("Index","Ordenes")"><i class="ti-tablet"></i>  Mesas </a></li>
+    <li><a href="@Url.Action("OrdenesTerminadas","Ordenes")"><i class="ti-tablet"></i>  Ordenes </a></li>
+    <li><a href="@Url.Action("Pagos","Ordenes")"><i class="ti-money"></i>  Pagos </a></li>
     <li class="label">Administracion</li>
 
     <li><a asp-action="Ventas" asp-controller="Application"><i class="ti-bar-chart-alt"></i>Reporte Ventas</a></li>
@@ -13,7 +15,7 @@
             <li><a href="@Url.Action("Index","Prestamos")"><i class="ti-bag"></i> Prestamos </a></li>
             <li><a href="@Url.Action("Solicitudes","Prestamos")"><i class="ti-share"></i> Solicitudes </a></li>
             <li><a href="@Url.Action("Devolucion","Prestamos")"><i class="ti-share-alt"></i> Devoluciones </a></li>
-            
+
         </ul>
     </li>
 

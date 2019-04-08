@@ -62,6 +62,7 @@ namespace VLO.Controllers
 
         public ActionResult OrdenesMeseros(int idpedido)
         {
+            Session["pedidoid"] = idpedido;
             Pedido p = db.Pedido.Find(idpedido);
             p.Estado = 3;
             db.Entry(p).State = EntityState.Modified;
@@ -70,9 +71,17 @@ namespace VLO.Controllers
             return Redirect("/Ordenes/Pagos");
         }
 
-
-        public ActionResult Pagos(int? idpedido)
+        [HttpGet]
+        public ActionResult Pagos()
         {
+            var idpedido = Convert.ToInt32(Session["pedidoid"]);
+            //var orden = db.Pedido.Where(x => x.Estado == 3).ToList();
+            //var detalle = db.DetallePedido.ToList();
+            //CocinaViewModel cvm = new CocinaViewModel();
+            //cvm.pedidos = orden;
+            //cvm.detalle = detalle;
+            //cvm.menus = db.Menus.ToList();
+            //return View(cvm);
             var orden = db.Pedido.Where(x => x.Estado == 3).ToList();
             var queryOrd = db.DetallePedido.Where(d => d.IdPedido == idpedido).ToList();
             CocinaViewModel cvm = new CocinaViewModel();
@@ -82,12 +91,28 @@ namespace VLO.Controllers
             return View(cvm);
         }
 
-        
+
 
         //VistaMenu
         public ActionResult Menu(int? id, int? idPedido)
         {
+            Session["pedido"] = idPedido;
+            Session["mesa"] = id;
+
             ViewBag.mesa = id;
+           
+                var dp = db.DetallePedido.Max(m => m.sesion);
+                Session["session"] = dp + 1;
+                var pedido = Convert.ToInt32(Session["pedido"]);
+            var mesa= Convert.ToInt32(Session["mesa"]);
+            if (pedido>0)
+                {
+                    var cli = (from p in db.Pedido where p.IdPedido == pedido && p.IdMesa==mesa select p).FirstOrDefault();
+                    ViewBag.cliente = cli.Cliente;
+                    ViewBag.cantidad = cli.Cantidad;
+                }
+            
+            
             var queryOrd = db.DetallePedido.Where(d => d.IdPedido == idPedido).ToList();
             OrdenesViewModel ovm = new OrdenesViewModel();
             ovm.DetallePedido = queryOrd;
@@ -103,16 +128,22 @@ namespace VLO.Controllers
         {
             //Usuarios e = db.Usuarios.Where(x => x.IdUser == 1).FirstOrDefault();
             int user = Convert.ToInt32(Session["Id"]);
-            Pedido p = new Pedido();
-            p.Cantidad = aovm.numpersonas;
-            p.Cliente = aovm.cliente;
-            p.IdUser = user;
-            p.Estado = 1;
-            p.IdMesa = aovm.mesa;
-            
 
+            var ps = Convert.ToInt32(Session["pedido"]);
+            if ( ps== 0)
+            {
+                Pedido p = new Pedido();
+                p.Cantidad = aovm.numpersonas;
+                p.Cliente = aovm.cliente;
+                p.IdUser = user;
+                p.Estado = 1;
+                p.IdMesa = aovm.mesa;
             db.Pedido.Add(p);
             await db.SaveChangesAsync();
+                Session["pedido"] = p.IdPedido;
+                Session["mesa"] = p.Mesa;
+            }
+            
 
             var lastPedido = db.Pedido.OrderByDescending(x=>x.IdPedido).First();
             for(var i= 0;i < aovm.id.Count;i++)
@@ -120,7 +151,8 @@ namespace VLO.Controllers
                 DetallePedido dp = new DetallePedido();
                 dp.IdMenu = aovm.id[i];
                 dp.cantidad = aovm.cantidad[i];
-                dp.IdPedido = lastPedido.IdPedido;
+                dp.IdPedido = Convert.ToInt32(Session["pedido"]);
+                dp.sesion = Convert.ToInt32(Session["session"]);
                 db.DetallePedido.Add(dp);
                 await db.SaveChangesAsync();
 

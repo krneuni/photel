@@ -255,6 +255,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904041334037_InitialCreate.cs" />
+    <Compile Include="Migrations\201904041334037_InitialCreate.Designer.cs">
+      <DependentUpon>201904041334037_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904081634157_Sesion.cs" />
+    <Compile Include="Migrations\201904081634157_Sesion.Designer.cs">
+      <DependentUpon>201904081634157_Sesion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AddOrdenViewModel.cs" />
     <Compile Include="Models\AddPrestViewModel.cs" />
     <Compile Include="Models\AsignacionTurno.cs" />
@@ -368,6 +377,7 @@
     <Content Include="Views\Prestamos\Espera.cshtml" />
     <Content Include="Views\Prestamos\Solicitudes.cshtml" />
     <Content Include="Views\Prestamos\Devolucion.cshtml" />
+    <Content Include="Views\AsignacionTurnos\Turno.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -377,6 +387,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201904041334037_InitialCreate.resx">
+      <DependentUpon>201904041334037_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904081634157_Sesion.resx">
+      <DependentUpon>201904081634157_Sesion.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

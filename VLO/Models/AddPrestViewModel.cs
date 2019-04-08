@@ -9,7 +9,9 @@ namespace VLO.Models
     {
         public List<int> id { get; set; }
         public List<int> cantidad { get; set; }
-        
+        public List<int> unidadmedida { get; set; }
+
+
         public int estado { get; set; }          
     }
 }
