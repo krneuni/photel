@@ -23,6 +23,11 @@ namespace VLO.Controllers
 
         public ActionResult Turno()
         {
+            //DateTime fecha = System.DateTime.Now;
+            //DateTime fecha1 = System.DateTime.Now.AddDays(4);
+            //var query = from x in db.AsignacionTurno
+            //            where Convert.ToDateTime(x.Fecha) >= fecha && Convert.ToDateTime(x.Fecha) <= fecha1
+            //            select x;
             return View(db.AsignacionTurno.ToList());
         }
         // GET: AsignacionTurnos/Details/5

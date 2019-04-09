@@ -20,7 +20,6 @@ namespace VLO.Models
         public virtual Pedido Pedido { get; set; }
 
         public int cantidad { get; set; }
-
         public int sesion { get; set; }
 
 

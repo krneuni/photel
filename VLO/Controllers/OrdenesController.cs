@@ -101,8 +101,8 @@ namespace VLO.Controllers
 
             ViewBag.mesa = id;
            
-                var dp = db.DetallePedido.Max(m => m.sesion);
-                Session["session"] = dp + 1;
+                //var dp = db.DetallePedido.Max(m => m.sesion);
+                //Session["session"] = dp + 1;
                 var pedido = Convert.ToInt32(Session["pedido"]);
             var mesa= Convert.ToInt32(Session["mesa"]);
             if (pedido>0)
