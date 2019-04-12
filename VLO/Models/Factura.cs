@@ -24,10 +24,15 @@ namespace VLO.Models
         [Display(Name = "Descuento")]
         public double Descuento { get; set; }
 
-        [Required(ErrorMessage = "Este campo es requerido")]
+        
         [DataType(DataType.Date, ErrorMessage = "Ingresar una fecha valida")]
         [Display(Name = "Fecha de facturación ")]
         public string FechaFactura { get; set; }
+
+        
+        public double Propina { get; set; }
+        public string Descripcion { get; set; }
+
 
     }
 }

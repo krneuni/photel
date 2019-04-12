@@ -21,6 +21,11 @@ namespace VLO.Controllers
             return View(factura.ToList());
         }
 
+        public ActionResult Factura()
+        {
+            return View();
+        }
+
         // GET: Facturas/Details/5
         public ActionResult Details(int? id)
         {
@@ -48,7 +53,7 @@ namespace VLO.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "NumFactura,IdDetalle,Precio,Descuento,FechaFactura")] Factura factura)
+        public ActionResult Create([Bind(Include = "NumFactura,IdDetalle,Precio,Descuento,FechaFactura, Descripcion, Propina")] Factura factura)
         {
             if (ModelState.IsValid)
             {
@@ -82,7 +87,7 @@ namespace VLO.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "NumFactura,IdDetalle,Precio,Descuento,FechaFactura")] Factura factura)
+        public ActionResult Edit([Bind(Include = "NumFactura,IdDetalle,Precio,Descuento,FechaFactura, Descripcion, Propina")] Factura factura)
         {
             if (ModelState.IsValid)
             {

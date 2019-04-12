@@ -82,7 +82,7 @@
 
                     </tbody>
                     <tfoot>
-                        <form asp-action="RealizarPago" method="post">
+                        <form action="/Ordenes/RealizarPago" method="post">
                             <input type="hidden" name="monto" id="monto" value="@totalapagar" />
                             @*<tr>
                                 <td colspan="4" style="text-align:right;font-size:20px;color:#000">Monto:</td>
@@ -125,7 +125,7 @@
                                 <td colspan="1" style="font-size:20px;color:#000">
                                     <input type="hidden" name="key" value="@Model.detalle.FirstOrDefault().IdPedido" />
                                     <input type="hidden" name="total" id="total" value="@totalapagar"  />
-                                    <button class="btn btn-success" type="submit">
+                                    <button class="btn btn-success btn-rounded" type="submit">
                                         Recibir Pago
                                     </button>
                                 </td>

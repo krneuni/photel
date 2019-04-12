@@ -935,3 +935,7 @@ C:\krn\photel\photel\photel\VLO\obj\Debug\VLO.csproj.CoreCompileInputs.cache
 C:\krn\photel\photel\photel\VLO\obj\Debug\VLO.csproj.CopyComplete
 C:\krn\photel\photel\photel\VLO\obj\Debug\VLO.dll
 C:\krn\photel\photel\photel\VLO\obj\Debug\VLO.pdb
+C:\krn\photel\photel\photel\VLO\obj\Debug\VLO.csprojAssemblyReference.cache
+C:\krn\photel\photel\photel\VLO\obj\Debug\VLO.Migrations.InitialCreate.resources
+C:\krn\photel\photel\photel\VLO\obj\Debug\VLO.csproj.GenerateResource.cache
+C:\krn\photel\photel\photel\VLO\obj\Debug\VLO.Migrations.Factura.resources

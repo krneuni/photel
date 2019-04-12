@@ -255,6 +255,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904091543367_InitialCreate.cs" />
+    <Compile Include="Migrations\201904091543367_InitialCreate.Designer.cs">
+      <DependentUpon>201904091543367_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904121650205_Factura.cs" />
+    <Compile Include="Migrations\201904121650205_Factura.Designer.cs">
+      <DependentUpon>201904121650205_Factura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AddOrdenViewModel.cs" />
     <Compile Include="Models\AddPrestViewModel.cs" />
     <Compile Include="Models\AsignacionTurno.cs" />
@@ -369,6 +378,7 @@
     <Content Include="Views\Prestamos\Solicitudes.cshtml" />
     <Content Include="Views\Prestamos\Devolucion.cshtml" />
     <Content Include="Views\AsignacionTurnos\Turno.cshtml" />
+    <Content Include="Views\Facturas\Factura.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -378,6 +388,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201904091543367_InitialCreate.resx">
+      <DependentUpon>201904091543367_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904121650205_Factura.resx">
+      <DependentUpon>201904121650205_Factura.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

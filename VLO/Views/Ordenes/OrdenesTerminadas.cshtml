@@ -55,7 +55,7 @@
                 @*<a class="btn btn-block badge-primary btn-rounded" href="/Ordenes/OrdenesMeseros?idpedido=@item.IdPedido">Pagar</a>*@
                 <form method="post" action="/Ordenes/OrdenesMeseros">
                     <input type="hidden" value="@item.IdPedido" name="idpedido"/>
-                    <input type="submit" value="PGr" />
+                    <input type="submit" value="Pagar" class="btn btn-danger btn-rounded" />
                 </form>
             </div>
         }

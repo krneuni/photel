@@ -33,7 +33,7 @@ namespace VLO.Controllers
             cvm.menus = db.Menus.ToList();
             
 
-            //var orden = (from o in db.Pedido join me in db.Mesa on o.IdMesa equals me.IdMesa select o).FirstOrDefault();
+            
             return View(cvm);
         }
         
@@ -63,10 +63,10 @@ namespace VLO.Controllers
         public ActionResult OrdenesMeseros(int idpedido)
         {
             Session["pedidoid"] = idpedido;
-            Pedido p = db.Pedido.Find(idpedido);
-            p.Estado = 3;
-            db.Entry(p).State = EntityState.Modified;
-            db.SaveChanges();
+            //Pedido p = db.Pedido.Find(idpedido);
+            //p.Estado = 3;
+            //db.Entry(p).State = EntityState.Modified;
+            //db.SaveChanges();
 
             return Redirect("/Ordenes/Pagos");
         }
@@ -82,7 +82,7 @@ namespace VLO.Controllers
             //cvm.detalle = detalle;
             //cvm.menus = db.Menus.ToList();
             //return View(cvm);
-            var orden = db.Pedido.Where(x => x.Estado == 3).ToList();
+            var orden = db.Pedido.Where(x => x.Estado == 2).ToList();
             var queryOrd = db.DetallePedido.Where(d => d.IdPedido == idpedido).ToList();
             CocinaViewModel cvm = new CocinaViewModel();
             cvm.pedidos = orden;
@@ -200,5 +200,21 @@ namespace VLO.Controllers
             catch { }
             return RedirectToAction("Menu", new { IdMesa = key2 });
         }
+
+        [HttpPost]
+        public ActionResult RealizarPago(AddOrdenViewModel cvm)
+        {
+            //Encontrar las mesas
+            Session["pedido"] = null;
+            Session["mesa"] = null;
+            Session["pedidoid"]= null;
+            //var mesa = (from x in cvm. where x.IdMesa select x)
+            Mesa d = db.Mesa.Find(cvm.mesa);
+            d.Estado = true;
+            db.Entry(d).State = EntityState.Modified;
+            db.SaveChanges();
+            return Redirect("/Ordenes/Index");
+        }
+
     }
 }

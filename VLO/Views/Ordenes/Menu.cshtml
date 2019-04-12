@@ -28,7 +28,7 @@
             </div>
             <input type="hidden" name="mesa" value="@ViewBag.mesa" />
 
-            <table class="table table-bordered" style="background-color:#FFF">
+            <table class="table table-bordered table-responsive" style="background-color:#FFF">
                 <thead>
                     <tr>
                         <td>N°</td>
@@ -83,7 +83,7 @@
                                 {
                                     @Html.AntiForgeryToken()
 
-                                <a href="@Url.Action("DeleteDetalle","Ordenes")" class="btn btn-danger btn-rounded"><i class="ti ti-close "></i></a>
+                                <a href="@Url.Action("DeleteDetalle","Ordenes")" class="btn"><i class="ti ti-close"></i></a>
                                 }
                             </td>
                         </tr>
