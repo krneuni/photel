@@ -188,6 +188,7 @@ namespace VLO.Migrations
                         IdPedido = c.Int(nullable: false),
                         cantidad = c.Int(nullable: false),
                         sesion = c.Int(nullable: false),
+                        Estado = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.IdDetalle)
                 .ForeignKey("dbo.Menus", t => t.IdMenu, cascadeDelete: true)
@@ -221,7 +222,9 @@ namespace VLO.Migrations
                         IdDetalle = c.Int(nullable: false),
                         Precio = c.Double(nullable: false),
                         Descuento = c.Double(nullable: false),
-                        FechaFactura = c.String(nullable: false),
+                        FechaFactura = c.String(),
+                        Propina = c.Double(nullable: false),
+                        Descripcion = c.String(),
                     })
                 .PrimaryKey(t => t.NumFactura)
                 .ForeignKey("dbo.DetallePedidoes", t => t.IdDetalle, cascadeDelete: true)

@@ -78,6 +78,8 @@ namespace VLO.Controllers
                 p.Cantidad = apvm.cantidad[i];
                 p.IdUser = e;
                 p.Estado = 1;
+                p.Fecha = Convert.ToString(DateTime.Now);
+                p.CantidadDevuelta = 0;
                 p.IdProducto = apvm.id[i];
                 db.Prestamos.Add(p);
                 await db.SaveChangesAsync();
@@ -148,22 +150,31 @@ namespace VLO.Controllers
             return View(cvm);
 
         }
+
+
+        
+
+
+
         //Vista Entregas Admin 
-        [HttpGet]
-        public ActionResult Devolver(int? idprestamos, int cant)
+        //[HttpGet]
+        public ActionResult Devolver(int idprestamos, int cant)
         {
             Prestamos d = db.Prestamos.Find(idprestamos);
             d.Estado = 4;
+            d.CantidadDevuelta = cant;
             db.Entry(d).State = EntityState.Modified;
             db.SaveChanges();
 
             //Encontrar el producto
             var prod = db.Productos.Find(d.IdProducto);
-            //var Disminuye = d.Cantidad;
+            var Disminuye = cant;
             double cantidad = prod.Cantidad;
-            prod.Cantidad = cant + cant;
+            prod.Cantidad = cantidad + Disminuye;
             db.Entry(prod).State = EntityState.Modified;
             db.SaveChanges();
+
+
 
             return Redirect("/Prestamos/Devolucion");
         }
@@ -271,29 +282,7 @@ namespace VLO.Controllers
 
 
 
-        //public static int Semana(DateTime time)
-        //{
-        //    DayOfWeek day = CultureInfo.InvariantCulture.Calendar.GetDayOfWeek(time);
-        //    if (day >= DayOfWeek.Monday && day <= DayOfWeek.Sunday)
-        //    {
-        //        time = time.AddDays(7);
-        //    }
-
-        //    return CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(time, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
-        //}
-
-        //public static DateTime FirstDateOfWeek(int year, int weekOfYear, System.Globalization.CultureInfo ci)
-        //{
-        //    DateTime jan1 = new DateTime(year, 1, 1);
-        //    int daysOffset = (int)ci.DateTimeFormat.FirstDayOfWeek - (int)jan1.DayOfWeek;
-        //    DateTime firstWeekDay = jan1.AddDays(daysOffset);
-        //    int firstWeek = ci.Calendar.GetWeekOfYear(jan1, ci.DateTimeFormat.CalendarWeekRule, ci.DateTimeFormat.FirstDayOfWeek);
-        //    if ((firstWeek <= 1 || firstWeek >= 52) && daysOffset >= -3)
-        //    {
-        //        weekOfYear -= 1;
-        //    }
-        //    return firstWeekDay.AddDays(weekOfYear * 7);
-        //}
+        
 
 
     }

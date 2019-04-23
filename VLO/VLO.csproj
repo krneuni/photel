@@ -255,13 +255,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201904091543367_InitialCreate.cs" />
-    <Compile Include="Migrations\201904091543367_InitialCreate.Designer.cs">
-      <DependentUpon>201904091543367_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201904221435127_InitialCreate.cs" />
+    <Compile Include="Migrations\201904221435127_InitialCreate.Designer.cs">
+      <DependentUpon>201904221435127_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201904121650205_Factura.cs" />
-    <Compile Include="Migrations\201904121650205_Factura.Designer.cs">
-      <DependentUpon>201904121650205_Factura.cs</DependentUpon>
+    <Compile Include="Migrations\201904221728068_Nueva.cs" />
+    <Compile Include="Migrations\201904221728068_Nueva.Designer.cs">
+      <DependentUpon>201904221728068_Nueva.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904231729377_FechaPrestamos.cs" />
+    <Compile Include="Migrations\201904231729377_FechaPrestamos.Designer.cs">
+      <DependentUpon>201904231729377_FechaPrestamos.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AddOrdenViewModel.cs" />
@@ -390,11 +394,14 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201904091543367_InitialCreate.resx">
-      <DependentUpon>201904091543367_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201904221435127_InitialCreate.resx">
+      <DependentUpon>201904221435127_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904121650205_Factura.resx">
-      <DependentUpon>201904121650205_Factura.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201904221728068_Nueva.resx">
+      <DependentUpon>201904221728068_Nueva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904231729377_FechaPrestamos.resx">
+      <DependentUpon>201904231729377_FechaPrestamos.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

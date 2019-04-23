@@ -938,4 +938,5 @@ C:\krn\photel\photel\photel\VLO\obj\Debug\VLO.pdb
 C:\krn\photel\photel\photel\VLO\obj\Debug\VLO.csprojAssemblyReference.cache
 C:\krn\photel\photel\photel\VLO\obj\Debug\VLO.Migrations.InitialCreate.resources
 C:\krn\photel\photel\photel\VLO\obj\Debug\VLO.csproj.GenerateResource.cache
-C:\krn\photel\photel\photel\VLO\obj\Debug\VLO.Migrations.Factura.resources
+C:\krn\photel\photel\photel\VLO\obj\Debug\VLO.Migrations.Nueva.resources
+C:\krn\photel\photel\photel\VLO\obj\Debug\VLO.Migrations.FechaPrestamos.resources

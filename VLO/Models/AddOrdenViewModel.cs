@@ -13,6 +13,6 @@ namespace VLO.Models
         public String cliente { get; set; }
         public int numpersonas { get; set; }
         public int estado { get; set; }
-        public List<string> termino { get; set; }
+        public String termino { get; set; }
     }
 }

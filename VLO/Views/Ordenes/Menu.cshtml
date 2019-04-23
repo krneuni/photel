@@ -33,6 +33,7 @@
                     <tr>
                         <td>N°</td>
                         <td>Producto</td>
+                        <td>Término</td>
                         <td>Estado</td>
                         <td>Cantidad</td>
                         <td>Precio</td>
@@ -47,27 +48,27 @@
                         <tr>
                             <td scope="row">@Item</td>
                             <td>@item.Menu.Nombre</td>
-
+                            <td>@item.Termino</td>
                             <td>
-                                @if (item.Pedido.Estado == 1)
+                                @if (item.Estado == 1)
                                 {
                                     <span class="badge badge-danger">
                                         En Cocina
                                     </span>
                                 }
-                                else if (item.Pedido.Estado == 2)
+                                else if (item.Estado == 2)
                                 {
                                     <span class="badge badge-success">
                                         Terminado
                                     </span>
                                 }
-                                else if (item.Pedido.Estado == 3)
+                                else if (item.Estado == 3)
                                 {
                                     <span class="badge badge-warning">
                                         Esperando pago
                                     </span>
                                 }
-                                else if (item.Pedido.Estado == 4)
+                                else if (item.Estado == 4)
                                 {
                                     <span class="badge badge-dark">
                                         Pagado
@@ -138,8 +139,21 @@
                             </p>
                             <label>Cantidad:</label>
                             <input type="number" id="cantidad__@item.IdMenu" min="1" max="99" name="cantidad" value="1" required class="form-control" />
-                            <label class="control-label">Termino:</label>
-                            
+                            @if (item.TipoMenu.ToString().Contains("Bebidas") || item.TipoMenu.ToString().Contains("Postres") || item.TipoMenu.ToString().Contains("Sopas")) { }
+                            else
+                            {
+                                <label class="control-label">Termino:</label>
+                                <select name="term" id="termi" class="form-control input-rounded">
+                                    <option value="N">Ninguno</option>
+                                    <option value="TR">Término Rojo</option>
+                                    <option value="TM">Término Medio</option>
+                                    <option value="TT">Término 3/4</option>
+                                    <option value="BC">Bien Cocido</option>
+                                    <option value="AC">Al Carbón</option>
+                                </select>
+                            }
+
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
@@ -165,9 +179,10 @@
         $(text).show();
     }
 
-    function addOrden(id, producto, cantidad, precio, estado) {
+    function addOrden(id, producto, cantidad, precio, estado, term) {
         try {
             var ccantidad = parseFloat($("#" + cantidad).val());
+            var terminoo = String(term);
             var detalle = `
             <tr id="tr`+ id + `">
                 <td>`+ id + `
@@ -175,6 +190,7 @@
                     <input type="hidden" value='`+ ccantidad +`' name="cantidad[]">
                 </td>
                 <td>`+ producto + `</td>
+                <td>`+ terminoo + `</td>
                 <td>`+ estado + `</td>
                 <td>`+ ccantidad + `</td>
                 <td> $`+ precio + `</td>

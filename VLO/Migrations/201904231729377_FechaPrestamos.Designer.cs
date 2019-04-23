@@ -7,13 +7,13 @@ namespace VLO.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Factura : IMigrationMetadata
+    public sealed partial class FechaPrestamos : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Factura));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(FechaPrestamos));
         
         string IMigrationMetadata.Id
         {
-            get { return "201904121650205_Factura"; }
+            get { return "201904231729377_FechaPrestamos"; }
         }
         
         string IMigrationMetadata.Source

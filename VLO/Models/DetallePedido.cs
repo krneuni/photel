@@ -21,6 +21,8 @@ namespace VLO.Models
 
         public int cantidad { get; set; }
         public int sesion { get; set; }
+        public int Estado { get; set; }
+        public string Termino { get; set; }
 
 
     }

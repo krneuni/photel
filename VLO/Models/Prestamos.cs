@@ -17,6 +17,15 @@ namespace VLO.Models
         [Range(0, double.MaxValue, ErrorMessage = "Debe ingresar un valor numérico.")]
         public double Cantidad { get; set; }
 
+        [Required(ErrorMessage = "Este campo es requerido")]
+        [Display(Name = "Cantidad a devolver")]
+        [Range(0, double.MaxValue, ErrorMessage = "Debe ingresar un valor numérico.")]
+        public double CantidadDevuelta { get; set; }
+
+        [DataType(DataType.Date, ErrorMessage = "Ingresar una fecha valida")]
+        [Display(Name = "Fecha de prestamo ")]
+        public string Fecha { get; set; }
+
         public int Estado { get; set; }
         //Relaciones
         public int IdProducto { get; set; }

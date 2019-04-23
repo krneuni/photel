@@ -25,8 +25,8 @@ namespace VLO.Controllers
 
         public ActionResult Ordenes()
         {
-            var orden = db.Pedido.Where(x=>x.Estado==1).ToList();
-            var detalle = db.DetallePedido.ToList();
+            var orden = db.Pedido.Where(x => x.Estado == 1).ToList();
+            var detalle = db.DetallePedido.Where(x => x.Estado == 1).ToList();
             CocinaViewModel cvm = new CocinaViewModel();
             cvm.pedidos = orden;
             cvm.detalle = detalle;
@@ -36,23 +36,41 @@ namespace VLO.Controllers
             
             return View(cvm);
         }
+
         
 
+
         [HttpGet]
-        public ActionResult TerminarOrdenCocina(int idpedido)
+        public ActionResult TerminarOrdenCocina(int iddetalle)
         {
-            Pedido d = db.Pedido.Find(idpedido);
-            d.Estado = 2;
-            db.Entry(d).State = EntityState.Modified;
+            
+            DetallePedido dp = db.DetallePedido.Find(iddetalle);
+            dp.Estado = 2;
+            db.Entry(dp).State = EntityState.Modified;
             db.SaveChanges();
 
+            var pe = db.Pedido.Find(dp.IdPedido);
+            var detped = (from u in db.Pedido where u.IdPedido == pe.IdPedido select u).ToList();
+            //Recorrer
+            foreach (var io in detped)
+            {
+                
+               
+                Pedido de = db.Pedido.Find(io.IdPedido);
+                de.Estado = 2;
+                db.Entry(de).State = EntityState.Modified;
+                db.SaveChanges();
+
+            }
+            
+            
             return Redirect("/Ordenes/Ordenes");
         }
 
         public ActionResult OrdenesTerminadas()
         {
             var orden = db.Pedido.Where(x => x.Estado == 2).ToList();
-            var detalle = db.DetallePedido.ToList();
+            var detalle = db.DetallePedido.Where(x => x.Estado == 2).ToList();
             CocinaViewModel cvm = new CocinaViewModel();
             cvm.pedidos = orden;
             cvm.detalle = detalle;
@@ -124,7 +142,7 @@ namespace VLO.Controllers
 
         //Agregar orden y guardar datos en las diferentes tablas
         [HttpPost]
-        public async Task<ActionResult> AddOrden(AddOrdenViewModel aovm)
+        public async Task<ActionResult> AddOrden(AddOrdenViewModel aovm, string term)
         {
             //Usuarios e = db.Usuarios.Where(x => x.IdUser == 1).FirstOrDefault();
             int user = Convert.ToInt32(Session["Id"]);
@@ -153,6 +171,8 @@ namespace VLO.Controllers
                 dp.cantidad = aovm.cantidad[i];
                 dp.IdPedido = Convert.ToInt32(Session["pedido"]);
                 dp.sesion = Convert.ToInt32(Session["session"]);
+                dp.Estado = 1;
+                dp.Termino = aovm.termino;
                 db.DetallePedido.Add(dp);
                 await db.SaveChangesAsync();
 
@@ -204,11 +224,12 @@ namespace VLO.Controllers
         [HttpPost]
         public ActionResult RealizarPago(AddOrdenViewModel cvm)
         {
-            //Encontrar las mesas
+            
             Session["pedido"] = null;
             Session["mesa"] = null;
             Session["pedidoid"]= null;
-            //var mesa = (from x in cvm. where x.IdMesa select x)
+
+            
             Mesa d = db.Mesa.Find(cvm.mesa);
             d.Estado = true;
             db.Entry(d).State = EntityState.Modified;

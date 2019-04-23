@@ -45,25 +45,25 @@
                                     <th>@menu.Pedido.Cliente</th>
                                     <td>@producto.Nombre</td>
                                     <td>
-                                        @if (menu.Pedido.Estado == 1)
+                                        @if (menu.Estado == 1)
                                         {
                                             <span class="badge badge-danger">
                                                 En Cocina
                                             </span>
                                         }
-                                        else if (menu.Pedido.Estado == 2)
+                                        else if (menu.Estado == 2)
                                         {
                                             <span class="badge badge-success">
                                                 Terminado
                                             </span>
                                         }
-                                        else if (menu.Pedido.Estado == 3)
+                                        else if (menu.Estado == 3)
                                         {
                                             <span class="badge badge-warning">
                                                 Esperando pago
                                             </span>
                                         }
-                                        else if (menu.Pedido.Estado == 4)
+                                        else if (menu.Estado == 4)
                                         {
                                             <span class="badge badge-dark">
                                                 Pagado

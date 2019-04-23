@@ -24,9 +24,10 @@
                         var Menu = Model.menus.Where(x => x.IdMenu == item2.IdMenu).FirstOrDefault();
 
                         <p>Menu: @Menu.Nombre</p>
+                        <p>Cantidad: @item2.cantidad</p>
+                        
+                     <a class="btn btn-danger btn-rounded" href="/Ordenes/TerminarOrdenCocina?iddetalle=@item2.IdDetalle">Terminar</a>
                     }
-                    <a class="btn btn-danger btn-rounded" href="/Ordenes/TerminarOrdenCocina?idpedido=@item.IdPedido">Terminar</a>
-
                 </div>
             </div>
         }

@@ -19,7 +19,9 @@
                 @Html.DisplayNameFor(model => model.Productos.Nombre)
             </th>
             <th>Cantidad a retirar</th>
+            <th>Fecha de prestamo</th>
             <th>Estado</th>
+            <th>Cantidad devuelta</th>
             <th></th>
         </tr>
 
@@ -36,6 +38,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Cantidad)
                 </td>
+                <td>@item.Fecha</td>
                 <td>
                     @if (item.Estado == 1)
                     {
@@ -62,10 +65,11 @@
                         </span>
                     }
                             </td>
-                <td>
+                <td>@item.CantidadDevuelta</td>
+                @*<td>
                     @Html.ActionLink(" ", "Edit", new { id = item.IdPrestamo }, new { @class = "btn btn-warning glyphicon glyphicon-refresh" })
                     @Html.ActionLink(" ", "Delete", new { id = item.IdPrestamo }, new { @class = "btn btn-danger glyphicon glyphicon-trash" })
-                </td>
+                </td>*@
             </tr>
         }
 
