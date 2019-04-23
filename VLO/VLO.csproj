@@ -383,6 +383,7 @@
     <Content Include="Views\Prestamos\Devolucion.cshtml" />
     <Content Include="Views\AsignacionTurnos\Turno.cshtml" />
     <Content Include="Views\Facturas\Factura.cshtml" />
+    <Content Include="Views\Productos\Existencias.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

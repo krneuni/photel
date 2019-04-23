@@ -231,7 +231,8 @@ namespace VLO.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdPrestamo,IdProducto,IdUser, Cantidad, Estado")] Prestamos prestamos)
+        public ActionResult Edit([Bind(Include = "IdPrestamo,IdProducto,IdUser, Cantidad, Estado" +
+            "")] Prestamos prestamos)
         {
             if (ModelState.IsValid)
             {

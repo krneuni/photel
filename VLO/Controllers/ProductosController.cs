@@ -28,6 +28,12 @@ namespace VLO.Controllers
             return View(query.ToList());
         }
 
+        public ActionResult Existencias()
+        {
+            var query = (from x in db.Productos where x.Cantidad == x.CantidadMinima select x);
+            return View(query);
+        }
+
         // GET: Productos/Details/5
         public ActionResult Details(int? id)
         {

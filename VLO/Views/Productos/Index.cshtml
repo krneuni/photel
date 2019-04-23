@@ -56,36 +56,37 @@
 
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Categoria.Nombre)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Nombre)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Marca)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Cantidad)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Fecha)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CantidadMinima)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UnidadMedida)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Estado)
-                    </td>
-                    <td>
-                        @Html.ActionLink(" ", "Edit", new { id = item.IdProducto }, new { @class = "btn btn-warning glyphicon glyphicon-refresh" })
-                        @Html.ActionLink(" ", "Delete", new { id = item.IdProducto }, new { @class = "btn btn-danger glyphicon glyphicon-trash" })
-                    </td>
-                </tr>
+            <tr class="@(item.Cantidad==item.CantidadMinima?"alert alert-danger":" ")">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Categoria.Nombre)
+                </td>
+                <td >
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Marca)
+                </td>
+                <td >
+                    @Html.DisplayFor(modelItem => item.Cantidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fecha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CantidadMinima)
+                </td>
+                <td >
+                    @Html.DisplayFor(modelItem => item.UnidadMedida)
+                </td>
+                <td >
+                    @Html.DisplayFor(modelItem => item.Estado)
+                </td>
+                <td >
+                    @Html.ActionLink(" ", "Edit", new { id = item.IdProducto }, new { @class = "btn btn-warning glyphicon glyphicon-refresh" })
+                    @Html.ActionLink(" ", "Delete", new { id = item.IdProducto }, new { @class = "btn btn-danger glyphicon glyphicon-trash" })
+                </td>
+            </tr>
+                
             }
 
         </table>
